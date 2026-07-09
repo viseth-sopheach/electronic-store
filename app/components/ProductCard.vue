@@ -14,7 +14,7 @@ function addToCart() {
   <div class="border border-gray-200 rounded-lg overflow-hidden bg-white flex flex-col">
     <NuxtLink :to="`/products/${product.id}`">
       <img
-        :src="product.image || 'https://placehold.co/400x400?text=No+Image'"
+        :src="product.image"
         :alt="product.name"
         class="w-full h-48 object-cover"
       >

@@ -1,9 +1,19 @@
 <script setup>
+import { ref } from "vue";
 const props = defineProps({
   categories: { type: Array, default: () => [] },
-  // create a new one.
+  // create a new one
   initialProduct: { type: Object, default: null },
 });
+
+const ImgPreview = ref("");
+
+const handleImgChange = (e) => {
+  const file = e.target.files[0];
+  if(file){
+    ImgPreview.value = URL.createObjectURL(file);
+  }
+};
 
 const emit = defineEmits(["submit", "cancel"]);
 
@@ -102,10 +112,18 @@ function handleSubmit() {
 
     <div>
       <label class="block text-sm font-medium text-gray-700 mb-1">Image</label>
+      <label
+        for="image"
+        class="inline-block cursor-pointer rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+      >
+        Upload Image <img v-if="ImgPreview" :src="ImgPreview" alt="">
+      </label>
+
       <input
+        id="image"
         type="file"
         accept="image/*"
-        class="w-full border rounded px-3 py-2 text-sm"
+        class="hidden"
         @change="handleImageChange"
       />
       <p v-if="imageError" class="text-xs text-red-600 mt-1">
