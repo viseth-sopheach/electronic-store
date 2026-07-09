@@ -1,5 +1,4 @@
 // POST /api/auth/login
-// Body: { email, password }
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const email = (body?.email || '').trim().toLowerCase()
