@@ -1,12 +1,14 @@
-export default defineNuxtRouteMiddleware(async () => {
-  const authStore = useAuthStore()
+export default defineNuxtRouteMiddleware(async (to) => {
+  const authStore = useAuthStore();
 
-  // Make sure we know who's logged
   if (!authStore.user && !authStore.loading) {
-    await authStore.fetchUser()
+    await authStore.fetchUser();
   }
 
   if (!authStore.isLoggedIn) {
-    return navigateTo(`/login`)
+    return navigateTo({
+      path: "/login",
+      query: { redirect: to.fullPath },
+    });
   }
-})
+});

@@ -16,7 +16,7 @@ onMounted(() => {
       <slot />
     </main>
     <footer class="text-center text-xs text-gray-400 py-6">
-      Electronic Store — built with Nuxt 3
+      Electronic Store — Viseth
     </footer>
   </div>
 </template>
